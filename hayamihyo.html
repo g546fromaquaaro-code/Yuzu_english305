@@ -1,7 +1,138 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>MISSION 20</title></head><body><div id="loading" style="font-family:-apple-system,BlinkMacSystemFont,'Yu Gothic',sans-serif;padding:40px;text-align:center;color:#704b87">MISSION 20を読み込み中…</div><script>(async()=>{try{let h=await fetch('./mission-core.html?v=9',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('load failed');return r.text()});const compact=`
-/* Compact game layout */
-#game .hero{margin:6px 0 6px}#game .hero h1{margin:2px 0;font-size:33px}#game .hero p{margin:2px 0 0;font-size:11px;line-height:1.3}#game .hud{margin:6px auto;max-width:980px}#game .track{height:9px}#game .banktitle{margin:8px 0 6px;font-size:11px}#game #bankWrap{max-width:980px;margin:0 auto}#game .actions{max-width:980px;margin:8px auto 0;gap:8px}#game .retry,#game .finish{padding:11px 12px;font-size:12.5px;border-radius:14px}#timer{font-size:17px;padding:9px 14px;min-width:98px;text-align:center;letter-spacing:.02em}
-@media(min-width:901px){.wrap{width:min(100%,1180px);padding:8px 12px 10px}.top{gap:6px}.back{padding:6px 9px;border-radius:12px;font-size:11px}.time{padding:9px 14px;border-radius:15px;font-size:17px;min-width:98px}#game .hero{margin:3px 0 5px}#game .hero .tag{display:none}#game .hero h1{font-size:32px;line-height:1}#game .hero p{font-size:10.5px;line-height:1.2}#game .hud{margin:5px auto 6px;gap:7px;max-width:980px}#game .track{height:8px}#game .count{font-size:12px}#game .words{max-width:980px;margin:0 auto;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}#game .slot{padding:7px 8px;border-radius:12px;box-shadow:0 2px 7px #8e6ea011}#game .slot .num{width:20px;height:20px;margin-right:5px;border-radius:6px;font-size:9px}#game .ja{font-size:13px;line-height:1.15}#game .ans{margin-top:4px;min-height:25px;padding:5px 7px;border-radius:8px;font-size:12.5px}#game .correct{font-size:9.5px;margin-top:2px}#game .banktitle{margin:7px 0 5px;font-size:11px}#game #bankWrap{max-width:980px;margin:0 auto}#game .bank{gap:7px;max-height:112px;overflow:auto;padding:3px 0}#game .chip{padding:9px 15px;font-size:14.5px;border-width:1px;box-shadow:0 2px 6px #906da316;min-height:38px}#game .actions{max-width:980px;margin:8px auto 0;gap:8px}#game .retry,#game .finish{padding:11px 12px;font-size:12.5px}#game .result{max-width:980px;margin:7px auto 0;padding:11px}}
-@media(min-width:651px) and (max-width:900px){.wrap{width:min(100%,900px);padding:8px 10px 12px}.time{font-size:16px;padding:8px 12px;min-width:92px}#game .hud,#game #bankWrap,#game .actions{max-width:760px}#game .words{max-width:760px;margin:0 auto;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}#game .slot{padding:7px 8px;border-radius:11px}#game .slot .num{width:19px;height:19px;font-size:9px}#game .ja{font-size:12.5px}#game .ans{margin-top:4px;min-height:24px;padding:5px 6px;font-size:12px}#game .bank{gap:6px;max-height:108px}#game .chip{padding:8px 13px;font-size:13.5px;min-height:36px}#game .retry,#game .finish{padding:11px;font-size:12px}}
-@media(max-width:650px){.wrap{padding:8px 8px 12px}.time{font-size:15px;padding:8px 11px;min-width:88px}#game .hero h1{font-size:28px}#game .words{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}#game .slot{padding:7px;border-radius:11px}#game .slot .num{width:19px;height:19px;font-size:9px}#game .ja{font-size:12px}#game .ans{margin-top:4px;min-height:23px;padding:5px 6px;font-size:11.5px}#game .bank{gap:6px;max-height:120px}#game .chip{padding:8px 12px;font-size:13px;min-height:36px}#game .retry,#game .finish{padding:11px;font-size:12px}}@media(max-width:390px){#game .words{grid-template-columns:1fr}}
-`;h=h.replace('</style>',compact+'</style>');h=h.replaceAll("fetch('./index.html?v=5')","fetch('./legacy.html?v=8')");h=h.replaceAll("location.href='./?v=5'","location.href='./?v=11'");document.open();document.write(h);document.close()}catch(e){document.getElementById('loading').textContent='MISSION 20を読み込めませんでした';console.error(e)}})();</script></body></html>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>英単語305 MISSION 20</title>
+<style>
+:root{--ink:#604673;--muted:#9683a3;--vio:#8457cf;--pink:#ff5f9d;--line:#e8dff0;--card:#fff;--soft:#f7effa;--gold:#ffd56d;--mint:#78d4b1}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink)}
+body{background:radial-gradient(circle at 8% 4%,#ffdce9 0,transparent 30rem),radial-gradient(circle at 95% 8%,#dcd4ff 0,transparent 30rem),linear-gradient(180deg,#fff8fc,#f8f2ff 55%,#f2fbf8);min-height:100vh}
+button{font:inherit;-webkit-tap-highlight-color:transparent}.wrap{width:min(100%,1320px);margin:auto;padding:12px 18px 24px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px}.back,.time{border:2px solid #fff;background:#ffffffea;border-radius:18px;box-shadow:0 5px 18px #7f619b20;font-weight:900}.back{padding:9px 14px;color:#228ac4;cursor:pointer}.time{padding:10px 18px;min-width:124px;text-align:center;font-size:19px;color:#745399}.hero{text-align:center;margin:10px 0 16px}.eyebrow{margin:0;color:#9c78aa;font-size:10px;font-weight:950;letter-spacing:.19em}.hero h1{margin:5px 0 7px;font-size:clamp(42px,6vw,70px);line-height:.95;color:#704b88;letter-spacing:-.045em}.hero h1 span{color:var(--pink);text-shadow:3px 4px #ffe2ed}.hero p{margin:0;color:#8d7898;font-size:12px;line-height:1.55;font-weight:700}.panel{background:#ffffffdf;border:2px solid #fff;border-radius:28px;padding:18px 22px;box-shadow:0 16px 42px #8a68a321;backdrop-filter:blur(8px)}
+.sectionbar{display:flex;align-items:center;justify-content:center;gap:8px;min-height:58px;padding:12px 18px;border-radius:18px;font-size:16px;font-weight:950;text-align:center}.sectionbar.normal{color:#fff;background:linear-gradient(100deg,#8b5dd0,#f2619b);box-shadow:0 6px 0 #6e4ca8}.sectionbar.weak{margin-top:14px;color:#80638f;background:linear-gradient(90deg,#fff3f8,#f4eafa)}
+.cats{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:9px;margin-top:14px}.cat{min-width:0;border:2px solid #eadff0;border-radius:18px;padding:12px 6px 10px;background:#fff;color:#694b7f;text-align:center;cursor:pointer;box-shadow:0 3px 10px #755d8c0d}.cat:active{transform:scale(.98)}.cat.on{border-color:#ff6da5;background:linear-gradient(180deg,#fff,#fff2f7);box-shadow:0 0 0 2px #ff8bb444,0 5px 14px #bf6b9220}.cat.weak-on{border-color:#9c7bd4;background:linear-gradient(180deg,#fff,#f4efff);box-shadow:0 0 0 2px #a18ae044}.cat .ico{display:block;font-size:26px;line-height:1;margin-bottom:6px}.cat strong{display:block;font-size:13px;line-height:1.3}.cat small{display:block;margin-top:4px;color:#9b87a5;font-size:10px;font-weight:850}.cat.empty{opacity:.45;cursor:default}
+.start{width:100%;margin-top:16px;border:0;border-radius:18px;padding:16px 18px;color:#fff;background:linear-gradient(100deg,#8258ca,#ff5d99);box-shadow:0 7px 0 #65439f;font-size:17px;font-weight:950;cursor:pointer}.start:disabled{opacity:.5;cursor:not-allowed}.selection{text-align:center;margin:11px 0 -3px;color:#8d709c;font-size:11px;font-weight:850}.records{margin-top:16px;padding:14px 16px;border-radius:18px;background:#fff7fa}.records-title{font-size:14px;font-weight:950;color:#79578c}.rank{display:flex;justify-content:space-between;gap:12px;margin-top:6px;padding:7px 10px;border-radius:11px;background:#fff;font-size:11px}.small{margin-top:6px;color:#aa96af;font-size:10px}
+.game{display:none}.game.on{display:block}.gamehero{text-align:center;margin:2px 0 7px}.gamehero h2{margin:0;color:#704b88;font-size:30px}.gamehero h2 span{color:var(--pink)}.gamehero p{margin:4px 0 0;color:#957fa0;font-size:10.5px;font-weight:750}.hud{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;max-width:1020px;margin:6px auto}.track{height:10px;border-radius:99px;background:#e8dff0;overflow:hidden}.track i{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--pink),var(--gold),var(--mint));transition:.2s}.count{font-size:12px;font-weight:950;color:#815c96}.words{max-width:1020px;margin:0 auto;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.slot{min-width:0;border:2px solid var(--line);border-radius:13px;background:#fff;padding:7px 8px;text-align:left;box-shadow:0 2px 8px #765a8c10;cursor:pointer}.slot .num{display:inline-grid;place-items:center;width:20px;height:20px;margin-right:5px;border-radius:6px;background:#f0e7fb;color:#805ba0;font-size:9px;font-weight:950}.ja{font-size:13px;font-weight:950;color:#6d4c80;line-height:1.18}.ans{display:block;margin-top:4px;min-height:26px;padding:5px 7px;border:2px dashed #e5d9eb;border-radius:8px;color:#a48bac;font-size:12.5px;font-weight:900}.slot.active{outline:3px solid #ff8db9}.slot.ok{border-color:#6dd0aa;background:#effbf6}.slot.bad{border-color:#ed8fa2;background:#fff1f5}.correct{display:block;margin-top:3px;color:#ca5870;font-size:9.5px;font-weight:900}.bankWrap{max-width:1020px;margin:0 auto}.banktitle{text-align:center;margin:8px 0 6px;color:#886399;font-size:11px;font-weight:950}.bank{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;overflow:visible}.chip{border:2px solid #eadff0;border-radius:99px;background:#fff;padding:9px 15px;min-height:38px;color:#75528b;font-size:14px;font-weight:950;box-shadow:0 2px 7px #795a9014;cursor:pointer}.chip.used{opacity:.25;transform:scale(.92)}.actions{max-width:1020px;margin:10px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:9px}.retry,.finish{border:0;border-radius:16px;padding:12px;font-size:12.5px;font-weight:950;cursor:pointer}.retry{border:2px solid #e4d8eb;background:#fff;color:#846893}.finish{color:#fff;background:linear-gradient(100deg,#7b55c4,#ff5b98);box-shadow:0 5px 0 #65449d}.result{display:none;max-width:1020px;margin:10px auto 0;padding:14px;border-radius:20px;background:linear-gradient(135deg,#fff6c9,#ffe8f1);text-align:center}.result.on{display:block}.result h2{margin:2px 0;color:#7c558e}.score{font-size:38px;font-weight:950;color:#e977a0}.result p{margin:5px 0 10px;font-size:11px;color:#8f738f}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.result-actions button{border:0;border-radius:14px;padding:11px;font-weight:900}.again{color:#fff;background:linear-gradient(100deg,#8158ca,#ff609c)}.choose{background:#fff;color:#765887;border:2px solid #eadfeb}.spark{position:fixed;z-index:20;pointer-events:none;font-size:22px;animation:fly .8s ease forwards}@keyframes fly{to{transform:translate(var(--x),var(--y)) rotate(180deg);opacity:0}}
+@media(max-width:1050px){.cats{grid-template-columns:repeat(4,1fr)}.words{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.wrap{padding:8px}.panel{padding:12px}.cats{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:40px}.time{font-size:15px;min-width:92px;padding:8px 11px}.back{padding:8px 10px;font-size:11px}.words{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.slot{padding:6px}.ja{font-size:12px}.ans{font-size:11.5px}.chip{font-size:12.5px;padding:8px 11px}.gamehero h2{font-size:27px}}
+@media(max-width:390px){.words{grid-template-columns:1fr}.result-actions{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <button class="back" id="back">← 305語へ</button>
+    <div class="time" id="timer">⏱ 0.0秒</div>
+  </div>
+
+  <section id="setup">
+    <header class="hero">
+      <p class="eyebrow">WORD MATCH MISSION</p>
+      <h1>🎮 <span>MISSION 20</span></h1>
+      <p>日本語を見て、英単語カードをセット！<br>カテゴリーを選んで、毎回ちがう20語にチャレンジ。</p>
+    </header>
+
+    <section class="panel">
+      <div class="sectionbar normal">📚 20語ミッション（カテゴリーを選択）</div>
+      <div class="cats" id="normalCats"></div>
+
+      <div class="sectionbar weak">🌱 未習得ミッション（カテゴリーを選択）</div>
+      <div class="cats" id="weakCats"></div>
+
+      <div class="selection" id="selection">カテゴリーを選んでください</div>
+      <button class="start" id="start" disabled>🚀 ミッション開始！</button>
+
+      <div class="records">
+        <div class="records-title">🏆 満点タイム TOP5</div>
+        <div id="records"></div>
+      </div>
+    </section>
+  </section>
+
+  <section class="game" id="game">
+    <div class="gamehero">
+      <h2>⚡ 英単語を<span>セット！</span></h2>
+      <p id="label">カテゴリー ミッション</p>
+    </div>
+    <div class="hud"><div class="track"><i id="progress"></i></div><div class="count" id="count">0 / 20</div></div>
+    <div class="words" id="words"></div>
+    <div class="bankWrap" id="bankWrap"><div class="banktitle">👇 英単語カード</div><div class="bank" id="bank"></div></div>
+    <div class="actions"><button class="retry" id="reset">🔄 やり直す</button><button class="finish" id="finish">🏁 終わり</button></div>
+    <div class="result" id="result"></div>
+  </section>
+</main>
+<script>
+const MKEY='eigo305-mastered-v1',RKEY='eigo305-category-mission-records-v2';
+const CATS=[
+{id:'pronoun',label:'代名詞・疑問詞',icon:'💬'},
+{id:'time',label:'時間・季節',icon:'⏱️'},
+{id:'place',label:'国・場所',icon:'🌍'},
+{id:'weather',label:'天気',icon:'🌤️'},
+{id:'people',label:'人・職業',icon:'🧑‍🚀'},
+{id:'sports',label:'スポーツ',icon:'🏀'},
+{id:'noun',label:'身近な名詞',icon:'🎒'},
+{id:'verb',label:'一般動詞',icon:'🏃'}];
+let W=[],selectedCat=null,selectedMode='normal',round=[],bank=[],fill={},active=0,startAt=0,timerId=null,graded=false;
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function mastered(){try{return new Set(JSON.parse(localStorage.getItem(MKEY)||'[]'))}catch{return new Set()}}
+function records(){try{return JSON.parse(localStorage.getItem(RKEY)||'{}')}catch{return {}}}
+function meta(id){return CATS.find(c=>c.id===id)}
+function wordsFor(id){return W.filter(w=>w.category===id)}
+function unmasteredFor(id){let m=mastered();return wordsFor(id).filter(w=>!m.has(w.id))}
+function recKey(){return selectedCat?selectedMode+'-'+selectedCat:''}
+function renderCats(){
+  $('#normalCats').innerHTML=CATS.map(c=>{let n=wordsFor(c.id).length;return `<button class="cat ${selectedMode==='normal'&&selectedCat===c.id?'on':''}" data-mode="normal" data-cat="${c.id}"><span class="ico">${c.icon}</span><strong>${c.label}</strong><small>${n}語</small></button>`}).join('');
+  $('#weakCats').innerHTML=CATS.map(c=>{let n=unmasteredFor(c.id).length;return `<button class="cat ${selectedMode==='weak'&&selectedCat===c.id?'weak-on':''} ${n===0?'empty':''}" data-mode="weak" data-cat="${c.id}" ${n===0?'disabled':''}><span class="ico">${c.icon}</span><strong>${c.label}</strong><small>未習得 ${n}語</small></button>`}).join('');
+  document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{if(b.disabled)return;selectedCat=b.dataset.cat;selectedMode=b.dataset.mode;renderCats();updateSelection();showRecords()});
+}
+function updateSelection(){
+  if(!selectedCat){$('#selection').textContent='カテゴリーを選んでください';$('#start').disabled=true;return}
+  let c=meta(selectedCat),n=selectedMode==='weak'?unmasteredFor(selectedCat).length:wordsFor(selectedCat).length,play=Math.min(20,n);
+  $('#selection').textContent=`${c.icon} ${c.label} ／ ${selectedMode==='weak'?'未習得':'通常'}ミッション ／ ${play}語`;
+  $('#start').textContent=`🚀 ${c.label} ミッション開始！`;
+  $('#start').disabled=play===0;
+}
+function showRecords(){
+  if(!selectedCat){$('#records').innerHTML='<div class="small">カテゴリーを選ぶと記録が表示されます</div>';return}
+  let r=(records()[recKey()]||[]).slice(0,5);
+  $('#records').innerHTML=r.length?r.map((x,i)=>`<div class="rank"><span>${['🥇','🥈','🥉','4️⃣','5️⃣'][i]} ${i+1}位</span><b>${x.time.toFixed(1)}秒</b></div>`).join(''):'<div class="small">まだ満点記録はありません</div>';
+}
+function pick(){
+  let pool=selectedMode==='weak'?unmasteredFor(selectedCat):wordsFor(selectedCat);
+  return shuffle(pool).slice(0,20);
+}
+function start(){
+  round=pick();if(!round.length)return;
+  bank=shuffle(round.map((w,i)=>({id:i,en:w.en,used:null})));
+  fill={};active=0;graded=false;
+  $('#setup').style.display='none';$('#game').classList.add('on');$('#result').classList.remove('on');$('#result').innerHTML='';$('#bankWrap').style.display='block';$('#finish').style.display='block';
+  let c=meta(selectedCat);$('#label').textContent=`${c.icon} ${c.label} ／ ${selectedMode==='weak'?'未習得':'通常'}ミッション`;
+  $('#timer').textContent='⏱ 0.0秒';startAt=performance.now();clearInterval(timerId);timerId=setInterval(()=>$('#timer').textContent='⏱ '+((performance.now()-startAt)/1000).toFixed(1)+'秒',100);render();
+}
+function render(){
+  let used=Object.keys(fill).length;$('#progress').style.width=(used/round.length*100)+'%';$('#count').textContent=used+' / '+round.length;
+  $('#words').innerHTML=round.map((w,i)=>{let x=bank.find(a=>a.id===fill[i]),ok=graded&&x&&x.en===w.en,bad=graded&&(!x||x.en!==w.en);return `<button class="slot ${!graded&&active===i?'active':''} ${ok?'ok':''} ${bad?'bad':''}" data-s="${i}"><span class="num">${i+1}</span><span class="ja">${w.ja}</span><span class="ans">${x?x.en:'？'}</span>${bad?`<span class="correct">正解：${w.en}</span>`:''}</button>`}).join('');
+  $('#bank').innerHTML=graded?'':bank.map(x=>`<button class="chip ${x.used!==null?'used':''}" data-c="${x.id}">${x.en}</button>`).join('');
+  if(!graded){document.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>slot(+b.dataset.s));document.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>chip(+b.dataset.c))}
+}
+function slot(i){if(fill[i]!=null){let x=bank.find(a=>a.id===fill[i]);if(x)x.used=null;delete fill[i]}active=i;render()}
+function chip(id){let x=bank.find(a=>a.id===id);if(!x)return;if(x.used!==null){delete fill[x.used];x.used=null;render();return}let s=active;if(s==null||fill[s]!=null)s=round.findIndex((_,i)=>fill[i]==null);if(s<0)return;fill[s]=id;x.used=s;active=round.findIndex((_,i)=>fill[i]==null);if(active<0)active=null;render()}
+function sparkle(){for(let i=0;i<16;i++){let s=document.createElement('i');s.className='spark';s.textContent=i%2?'★':'✦';s.style.left=(45+Math.random()*10)+'vw';s.style.top='48vh';s.style.color=['#ff7aaa','#9b7bd5','#f0b830','#70cfad'][i%4];s.style.setProperty('--x',(Math.random()*300-150)+'px');s.style.setProperty('--y',(Math.random()*250-170)+'px');document.body.appendChild(s);setTimeout(()=>s.remove(),850)}}
+function finish(){
+  if(graded)return;graded=true;clearInterval(timerId);let sec=(performance.now()-startAt)/1000,score=0;
+  round.forEach((w,i)=>{let x=bank.find(a=>a.id===fill[i]);if(x&&x.en===w.en)score++});render();$('#bankWrap').style.display='none';$('#finish').style.display='none';
+  let perfect=score===round.length;
+  if(perfect){sparkle();let m=mastered();round.forEach(w=>m.add(w.id));localStorage.setItem(MKEY,JSON.stringify([...m]));let all=records(),k=recKey();all[k]=[...(all[k]||[]),{time:+sec.toFixed(1),date:new Date().toLocaleDateString('ja-JP')}].sort((a,b)=>a.time-b.time).slice(0,5);localStorage.setItem(RKEY,JSON.stringify(all))}
+  $('#result').classList.add('on');$('#result').innerHTML=`<div>${perfect?'✨🏆✨':'🎯'}</div><h2>${perfect?'MISSION CLEAR!':'あと少し！'}</h2><div class="score">${score} / ${round.length}</div><p>${perfect?'満点タイムを保存しました！':'赤いところを確認して、もう一度挑戦！'}</p><div class="result-actions"><button class="again" id="again">もう一度</button><button class="choose" id="choose">カテゴリーを選ぶ</button></div>`;
+  $('#again').onclick=start;$('#choose').onclick=home;renderCats();showRecords();
+}
+function home(){clearInterval(timerId);$('#timer').textContent='⏱ 0.0秒';$('#game').classList.remove('on');$('#setup').style.display='block';renderCats();updateSelection();showRecords();window.scrollTo({top:0,behavior:'smooth'})}
+async function load(){
+  try{let h=await fetch('./legacy.html?v=8',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('load');return r.text()}),m=h.match(/const DATA=(\{.*?\}),W=DATA\.words/s);if(!m)throw Error('DATA');W=JSON.parse(m[1]).words;renderCats();updateSelection();showRecords()}
+  catch(e){$('#selection').textContent='単語データを読み込めませんでした';$('#start').disabled=true;console.error(e)}
+}
+$('#start').onclick=start;$('#reset').onclick=start;$('#finish').onclick=finish;$('#back').onclick=()=>location.href='./?v=12';load();
+</script>
+</body>
+</html>
