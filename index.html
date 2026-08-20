@@ -5,18 +5,43 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>英単語305</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;background:#fff8fc;color:#654a76}body{display:flex;flex-direction:column;overflow:hidden}.launcher{flex:0 0 auto;padding:12px 12px 10px;background:linear-gradient(180deg,#fff8fc,#f4efff);border-bottom:1px solid #eadcf0}.mission{width:min(100%,760px);margin:0 auto;border:3px solid #fff;border-radius:24px;padding:14px 16px;color:#fff;background:linear-gradient(135deg,#6848bf 0%,#a95ee4 48%,#ff5f9f 100%);display:grid;grid-template-columns:54px 1fr auto;align-items:center;gap:12px;text-align:left;box-shadow:0 7px 0 #573a9a,0 13px 26px #9e70a13a;cursor:pointer}.mission:active{transform:translateY(3px);box-shadow:0 4px 0 #573a9a}.ico{display:grid;place-items:center;width:52px;height:52px;border-radius:17px;background:linear-gradient(145deg,#fff7b2,#ffd96c);font-size:28px;box-shadow:inset 0 -3px 0 #e8b843}.mission strong{display:block;font-size:22px;line-height:1}.mission small{display:block;margin-top:5px;font-size:11px;line-height:1.45;font-weight:750;color:#fff}.play{padding:8px 10px;border-radius:99px;background:#ffffff28;border:1px solid #ffffff55;font-size:11px;font-weight:900;white-space:nowrap}.hint{text-align:center;margin:6px 0 0;font-size:10px;color:#9376a2;font-weight:800}.appframe{flex:1 1 auto;width:100%;border:0;background:#fff;min-height:0}@media(max-width:520px){.mission{grid-template-columns:48px 1fr;padding:13px 14px}.ico{width:46px;height:46px;font-size:25px}.mission strong{font-size:19px}.play{display:none}}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff8fc}.appframe{display:block;width:100%;height:100%;border:0;background:#fff}
 </style>
 </head>
 <body>
-<div class="launcher">
-  <button class="mission" onclick="location.href='./hayamihyo.html?v=12'" aria-label="MISSION 20を開く">
-    <span class="ico">🎮</span>
-    <span><strong>MISSION 20</strong><small>カテゴリーを選んで、日本語から英単語をそろえるゲーム！<br>毎回シャッフル・タイムアタック</small></span>
-    <span class="play">PLAY ▶</span>
-  </button>
-  <div class="hint">↓ いつもの英単語305はこの下</div>
-</div>
-<iframe class="appframe" src="./legacy.html?v=8" title="英単語305 通常モード"></iframe>
+<iframe id="appframe" class="appframe" src="./legacy.html?v=13" title="英単語305"></iframe>
+<script>
+const frame=document.getElementById('appframe');
+frame.addEventListener('load',()=>{
+  const d=frame.contentDocument;
+  if(!d)return;
+  if(!d.getElementById('mission20-menu-style')){
+    const s=d.createElement('style');
+    s.id='mission20-menu-style';
+    s.textContent=`
+      .mode-picker{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important}
+      .mode-btn{min-width:0!important;padding:7px 4px!important}
+      .mode-btn.mission20-entry{color:#846b90}
+      .mode-btn.mission20-entry:active{transform:scale(.97)}
+      @media(max-width:420px){.mode-picker{gap:5px!important}.mode-btn{font-size:11px!important;padding:6px 2px!important}}
+    `;
+    d.head.appendChild(s);
+  }
+  const inject=()=>{
+    const picker=d.querySelector('.mode-picker');
+    if(!picker||d.getElementById('mission20ModeBtn'))return;
+    const b=d.createElement('button');
+    b.id='mission20ModeBtn';
+    b.className='mode-btn mission20-entry';
+    b.type='button';
+    b.innerHTML='<span>🎮</span>MISSION 20';
+    b.addEventListener('click',()=>{window.location.href='./hayamihyo.html?v=13'});
+    picker.appendChild(b);
+  };
+  inject();
+  const target=d.getElementById('app')||d.body;
+  new MutationObserver(inject).observe(target,{childList:true,subtree:true});
+});
+</script>
 </body>
 </html>
