@@ -27,10 +27,10 @@ frame.addEventListener('load',()=>{
     const s=d.createElement('style');
     s.id='app-extra-style';
     s.textContent=`
-      .mode-picker{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important}
-      .mode-btn{min-width:0!important;padding:7px 4px!important}
-      .mode-btn.mission20-entry{color:#846b90}
-      .mode-btn.mission20-entry:active{transform:scale(.97)}
+      .mode-picker{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important}
+      .mode-btn{min-width:0!important;padding:7px 3px!important}
+      .mode-btn.mission20-entry,.mode-btn.grammar2-entry{color:#846b90}
+      .mode-btn.mission20-entry:active,.mode-btn.grammar2-entry:active{transform:scale(.97)}
       .bgm-settings-toggle{position:fixed;z-index:31;right:max(70px,calc(env(safe-area-inset-right) + 70px));top:max(14px,env(safe-area-inset-top));width:48px;height:48px;border:2px solid #fff;border-radius:50%;background:linear-gradient(145deg,#fff,#f1eaff);color:#795b96;font-size:20px;box-shadow:0 6px 18px #956fa833;cursor:pointer}
       .bgm-settings-toggle:active{transform:scale(.92)}
       .bgm-settings-backdrop{display:none;position:fixed;inset:0;z-index:90;place-items:center;padding:18px;background:#5a3e6d66;backdrop-filter:blur(5px)}
@@ -39,7 +39,7 @@ frame.addEventListener('load',()=>{
       .bgm-settings-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.bgm-settings-head h2{margin:0;color:#704b87;font-size:22px}.bgm-settings-close{width:38px;height:38px;border:0;border-radius:50%;background:#f0e6f4;color:#75578a;font-size:20px;font-weight:900;cursor:pointer}
       .bgm-settings-note{margin:8px 0 14px;color:#8d7898;font-size:11px;font-weight:750;line-height:1.5}
       .bgm-track-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.bgm-track{min-width:0;padding:12px 4px;border:2px solid #e9def0;border-radius:15px;background:#fff;color:#79598c;font-size:12px;font-weight:900;cursor:pointer}.bgm-track.on{border-color:#ff76aa;color:#fff;background:linear-gradient(135deg,#9d7bd4,#ff78aa);box-shadow:0 5px 12px #a875a23a}.bgm-track small{display:block;margin-top:3px;font-size:8px;opacity:.8}
-      @media(max-width:420px){.mode-picker{gap:5px!important}.mode-btn{font-size:11px!important;padding:6px 2px!important}.bgm-settings-toggle{right:66px;width:44px;height:44px}.bgm-track-grid{grid-template-columns:repeat(3,1fr)}}
+      @media(max-width:420px){.mode-picker{gap:4px!important}.mode-btn{font-size:10px!important;padding:6px 1px!important}.bgm-settings-toggle{right:66px;width:44px;height:44px}.bgm-track-grid{grid-template-columns:repeat(3,1fr)}}
     `;
     d.head.appendChild(s);
   }
@@ -81,7 +81,17 @@ frame.addEventListener('load',()=>{
     const b=d.createElement('button');
     b.id='mission20ModeBtn';b.className='mode-btn mission20-entry';b.type='button';
     b.innerHTML='<span>🎮</span>MISSION 20';
-    b.addEventListener('click',()=>{window.location.href='./hayamihyo.html?v=18'});
+    b.addEventListener('click',()=>{window.location.href='./hayamihyo.html?v=19'});
+    picker.appendChild(b);
+  };
+
+  const injectGrammar=()=>{
+    const picker=d.querySelector('.mode-picker');
+    if(!picker||d.getElementById('grammar2ModeBtn'))return;
+    const b=d.createElement('button');
+    b.id='grammar2ModeBtn';b.className='mode-btn grammar2-entry';b.type='button';
+    b.innerHTML='<span>📋</span>早見表2';
+    b.addEventListener('click',()=>{window.location.href='./hayamihyo2.html?v=19'});
     picker.appendChild(b);
   };
 
@@ -99,9 +109,9 @@ frame.addEventListener('load',()=>{
     d.body.append(btn,overlay);
   };
 
-  injectMission();injectSettings();
+  injectMission();injectGrammar();injectSettings();
   const target=d.getElementById('app')||d.body;
-  new MutationObserver(()=>{injectMission();injectSettings()}).observe(target,{childList:true,subtree:true});
+  new MutationObserver(()=>{injectMission();injectGrammar();injectSettings()}).observe(target,{childList:true,subtree:true});
 });
 </script>
 </body>
