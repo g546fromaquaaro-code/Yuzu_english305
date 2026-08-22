@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>英語の早見表 パート2</title>
+<style>
+:root{--ink:#5e496a;--vio:#875fd0;--pink:#ff6fa7;--line:#e8dfeb;--cream:#fff7e8;--green:#72cfa8;--red:#ed8ea0}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink)}
+body{background:radial-gradient(circle at 8% 5%,#ffe0eb 0,transparent 28rem),radial-gradient(circle at 95% 8%,#ded6ff 0,transparent 30rem),linear-gradient(180deg,#fffafd,#f7f3ff 60%,#f2faf7)}
+button{font:inherit;-webkit-tap-highlight-color:transparent;cursor:pointer}.wrap{width:min(100%,1280px);margin:auto;padding:14px 18px 28px}.top{display:flex;align-items:center;justify-content:space-between;gap:10px}.back,.timer{border:2px solid #fff;background:#ffffffea;border-radius:17px;box-shadow:0 5px 18px #7f619b20;font-weight:900}.back{padding:9px 14px;color:#2589bd}.timer{padding:10px 15px;min-width:112px;text-align:center;color:#745397;font-size:17px}.hero{text-align:center;margin:8px 0 12px}.eyebrow{margin:0;color:#9e7cab;font-size:10px;font-weight:950;letter-spacing:.16em}.hero h1{margin:4px 0;color:#714c88;font-size:clamp(30px,5vw,48px);line-height:1}.hero h1 span{color:var(--pink)}.hero p{margin:7px 0 0;color:#8b7895;font-size:11px;font-weight:750}.panel{padding:14px;border:2px solid #fff;border-radius:25px;background:#ffffffde;box-shadow:0 15px 40px #8f6fa21c}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:620px;margin:0 auto 12px}.tab{border:2px solid #eadff0;border-radius:15px;padding:10px;background:#fff;color:#765789;font-weight:900}.tab.on{border-color:#ff83b1;color:#fff;background:linear-gradient(105deg,#8a62d0,#ff6da7);box-shadow:0 5px 0 #6d4baa}.rules{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 10px}.rule{padding:5px 9px;border-radius:99px;background:#fff4fb;color:#906a9d;font-size:9px;font-weight:900}.rule:nth-child(2){background:#f3efff}.rule:nth-child(3){background:#eefbf6}.tableWrap{overflow-x:auto;border-radius:18px;border:2px solid #e4dce5;background:#fff}.grammar{width:100%;min-width:860px;border-collapse:collapse;table-layout:fixed}.grammar th,.grammar td{border-right:1px solid #d8d3d8;border-bottom:1px solid #d8d3d8;text-align:center}.grammar th:last-child,.grammar td:last-child{border-right:0}.grammar tr:last-child td{border-bottom:0}.grammar th{height:72px;padding:8px;background:var(--cream);color:#443448;font-size:15px}.grammar th small{display:block;margin-top:4px;color:#9d8c8d;font-size:8px}.grammar td{height:78px;padding:7px;background:#fff;font-size:17px}.grammar td.subject{font-weight:900;background:#fffdf9}.cell{width:100%;min-height:51px;border:2px solid transparent;border-radius:12px;background:transparent;color:#4f4058;font-weight:800}.cell.static{cursor:default}.cell.blank{border:2px dashed #d8cce1;background:#fbf9fd;color:#b19bb8}.cell.active{outline:3px solid #ff8eb9}.cell.filled{border-color:#9b7bd4;background:#f4efff;color:#654b7a;box-shadow:0 0 0 2px #9b7bd422}.cell.ok{border-color:var(--green);background:#edfbf5;color:#317d61}.cell.bad{border-color:var(--red);background:#fff0f4;color:#b95368}.correct{display:block;margin-top:3px;color:#c75c72;font-size:8px;font-weight:900}.bankTitle{text-align:center;margin:10px 0 6px;color:#89679a;font-size:11px;font-weight:950}.bank{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;max-width:1100px;margin:auto}.chip{border:2px solid #e6daeb;border-radius:99px;padding:9px 14px;background:#fff;color:#76558a;font-size:13px;font-weight:950;box-shadow:0 3px 8px #82679712}.chip:active{transform:scale(.96)}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:850px;margin:12px auto 0}.secondary,.finish{border-radius:15px;padding:12px;font-weight:950}.secondary{border:2px solid #e5d9ea;background:#fff;color:#80668c}.finish{border:0;color:#fff;background:linear-gradient(105deg,#8159ca,#ff639e);box-shadow:0 5px 0 #6545a0}.result{display:none;max-width:850px;margin:10px auto 0;padding:13px;border-radius:18px;text-align:center;background:linear-gradient(135deg,#fff6cb,#ffe9f2)}.result.on{display:block}.result strong{font-size:27px;color:#e1729a}.record{margin-top:9px;color:#8e7797;font-size:10px;font-weight:850}.viewNote{text-align:center;margin:10px 0 0;color:#8b7794;font-size:10px;font-weight:800}
+@media(max-width:700px){.wrap{padding:8px}.panel{padding:9px}.grammar{min-width:760px}.grammar th{height:62px;font-size:13px}.grammar td{height:69px;font-size:15px}.cell{min-height:45px}.chip{padding:8px 11px;font-size:12px}.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><button class="back" id="back">← 305語へ</button><div class="timer" id="timer">⏱ 0.0秒</div></div>
+  <header class="hero"><p class="eyebrow">GRAMMAR QUICK TABLE</p><h1>📋 早見表 <span>パート2</span></h1><p>表で見て、そのまま穴埋め。主語が変わると英語がどう変わるか覚えよう。</p></header>
+  <section class="panel">
+    <div class="tabs"><button class="tab on" data-mode="view">👀 早見表を見る</button><button class="tab" data-mode="fill">✏️ 穴埋めで覚える</button></div>
+    <div class="rules"><span class="rule">一般動詞：he / she / family は s</span><span class="rule">進行形：be動詞 + playing</span><span class="rule">can：can + 動詞の原形</span></div>
+    <div class="tableWrap"><table class="grammar"><thead><tr><th>主語</th><th>be動詞</th><th>一般動詞①<small>like</small></th><th>一般動詞②<small>play</small></th><th>進行形<small>be + playing</small></th><th>できる<small>can + play</small></th></tr></thead><tbody id="tbody"></tbody></table></div>
+    <div id="fillTools" style="display:none"><div class="bankTitle">👇 空欄をタップして、カードを選ぼう</div><div class="bank" id="bank"></div><div class="actions"><button class="secondary" id="retry">🔄 穴を変える</button><button class="finish" id="finish">🏁 採点する</button></div><div class="result" id="result"></div></div>
+    <div class="viewNote" id="viewNote">横に見比べると、<b>he / she / family</b> の変化が見つけやすいよ。</div>
+    <div class="record" id="record"></div>
+  </section>
+</main>
+<script>
+const RECORD_KEY='eigo305-grammar-table2-record-v1';
+const ROWS=[
+ {subject:'I',be:'am',v1:'like',v2:'play',prog:'am playing',can:'can play'},
+ {subject:'you',be:'are',v1:'like',v2:'play',prog:'are playing',can:'can play'},
+ {subject:'they',be:'are',v1:'like',v2:'play',prog:'are playing',can:'can play'},
+ {subject:'he/she',be:'is',v1:'likes',v2:'plays',prog:'is playing',can:'can play'},
+ {subject:'family',be:'is',v1:'likes',v2:'plays',prog:'is playing',can:'can play'}
+];
+const COLS=['be','v1','v2','prog','can'];
+let mode='view',blanks=[],answers={},active=null,graded=false,startAt=0,timerId=null;
+const $=s=>document.querySelector(s);
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function key(r,c){return r+'-'+c}
+function newRound(){graded=false;answers={};active=null;let all=[];ROWS.forEach((_,r)=>COLS.forEach(c=>all.push(key(r,c))));blanks=shuffle(all).slice(0,15);startAt=performance.now();clearInterval(timerId);timerId=setInterval(()=>$('#timer').textContent='⏱ '+((performance.now()-startAt)/1000).toFixed(1)+'秒',100);$('#result').classList.remove('on');render()}
+function render(){
+ $('#tbody').innerHTML=ROWS.map((row,r)=>`<tr><td class="subject">${row.subject}</td>${COLS.map(c=>{let k=key(r,c),isBlank=mode==='fill'&&blanks.includes(k),ans=answers[k],ok=graded&&ans===row[c],bad=graded&&isBlank&&ans!==row[c];if(!isBlank)return `<td><button class="cell static" type="button">${row[c]}</button></td>`;return `<td><button class="cell blank ${active===k&&!graded?'active':''} ${ans&&!graded?'filled':''} ${ok?'ok':''} ${bad?'bad':''}" type="button" data-cell="${k}">${ans||'？'}${bad?`<span class="correct">正解：${row[c]}</span>`:''}</button></td>`}).join('')}</tr>`).join('');
+ if(mode==='fill'&&!graded)document.querySelectorAll('[data-cell]').forEach(b=>b.onclick=()=>{active=b.dataset.cell;render()});
+ if(mode==='fill')renderBank();
+}
+function renderBank(){let choices=[...new Set(blanks.map(k=>{let [r,c]=k.split('-');return ROWS[+r][c]}))];$('#bank').innerHTML=shuffle(choices).map(x=>`<button class="chip" type="button" data-answer="${x}">${x}</button>`).join('');if(!graded)document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{if(!active){let first=blanks.find(k=>!answers[k]);active=first||blanks[0]}answers[active]=b.dataset.answer;let next=blanks.find(k=>!answers[k]);active=next||active;render()})}
+function setMode(m){mode=m;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('on',b.dataset.mode===m));$('#fillTools').style.display=m==='fill'?'block':'none';$('#viewNote').style.display=m==='view'?'block':'none';clearInterval(timerId);$('#timer').textContent='⏱ 0.0秒';$('#result').classList.remove('on');if(m==='fill')newRound();else{blanks=[];answers={};graded=false;render()} }
+function finish(){if(graded)return;graded=true;clearInterval(timerId);let sec=(performance.now()-startAt)/1000,score=0;blanks.forEach(k=>{let [r,c]=k.split('-');if(answers[k]===ROWS[+r][c])score++});render();let perfect=score===blanks.length;if(perfect){let old=Number(localStorage.getItem(RECORD_KEY)||0);if(!old||sec<old)localStorage.setItem(RECORD_KEY,sec.toFixed(1))}$('#result').classList.add('on');$('#result').innerHTML=`<div>${perfect?'✨🏆✨':'🎯'}</div><strong>${score} / ${blanks.length}</strong><div>${perfect?'満点！ '+sec.toFixed(1)+'秒でクリア！':'赤いところを見て、もう一度やってみよう。'}</div>`;showRecord()}
+function showRecord(){let best=localStorage.getItem(RECORD_KEY);$('#record').textContent=best?'🏆 穴埋めベストタイム：'+Number(best).toFixed(1)+'秒':'🏆 穴埋めベストタイム：まだ記録なし'}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));$('#retry').onclick=newRound;$('#finish').onclick=finish;$('#back').onclick=()=>location.href='./?v=19';showRecord();render();
+</script>
+</body>
+</html>
