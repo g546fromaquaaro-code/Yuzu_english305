@@ -9,38 +9,99 @@
 </style>
 </head>
 <body>
-<iframe id="appframe" class="appframe" src="./legacy.html?v=14" title="英単語305" allow="autoplay"></iframe>
+<iframe id="appframe" class="appframe" src="./legacy.html?v=18" title="英単語305" allow="autoplay"></iframe>
 <script>
 const frame=document.getElementById('appframe');
+const BGM_KEY='eigo305-bgm-v1';
+const BGM_TRACKS={
+  1:{tempo:360,notes:[523,659,784,659,587,698,880,698],bass:[262,262,294,294,220,220,247,247],wave:'sine'},
+  2:{tempo:320,notes:[659,784,988,784,698,880,1047,880],bass:[330,330,349,349,294,294,330,330],wave:'triangle'},
+  3:{tempo:430,notes:[523,587,659,784,659,587,494,587],bass:[262,294,330,392,330,294,247,294],wave:'sine'},
+  4:{tempo:270,notes:[784,659,784,988,880,698,880,1047],bass:[196,196,220,220,247,247,262,262],wave:'square'},
+  5:{tempo:240,notes:[659,880,784,1047,880,1175,988,784],bass:[330,392,349,440,392,494,440,392],wave:'triangle'}
+};
 frame.addEventListener('load',()=>{
-  const d=frame.contentDocument;
+  const d=frame.contentDocument,w=frame.contentWindow;
   if(!d)return;
-  if(!d.getElementById('mission20-menu-style')){
+  if(!d.getElementById('app-extra-style')){
     const s=d.createElement('style');
-    s.id='mission20-menu-style';
+    s.id='app-extra-style';
     s.textContent=`
       .mode-picker{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:9px!important}
       .mode-btn{min-width:0!important;padding:7px 4px!important}
       .mode-btn.mission20-entry{color:#846b90}
       .mode-btn.mission20-entry:active{transform:scale(.97)}
-      @media(max-width:420px){.mode-picker{gap:5px!important}.mode-btn{font-size:11px!important;padding:6px 2px!important}}
+      .bgm-settings-toggle{position:fixed;z-index:31;right:max(70px,calc(env(safe-area-inset-right) + 70px));top:max(14px,env(safe-area-inset-top));width:48px;height:48px;border:2px solid #fff;border-radius:50%;background:linear-gradient(145deg,#fff,#f1eaff);color:#795b96;font-size:20px;box-shadow:0 6px 18px #956fa833;cursor:pointer}
+      .bgm-settings-toggle:active{transform:scale(.92)}
+      .bgm-settings-backdrop{display:none;position:fixed;inset:0;z-index:90;place-items:center;padding:18px;background:#5a3e6d66;backdrop-filter:blur(5px)}
+      .bgm-settings-backdrop.on{display:grid}
+      .bgm-settings-card{width:min(92vw,440px);padding:20px;border:2px solid #fff;border-radius:26px;background:linear-gradient(145deg,#fff,#fff6fb);box-shadow:0 20px 60px #543b6c44}
+      .bgm-settings-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.bgm-settings-head h2{margin:0;color:#704b87;font-size:22px}.bgm-settings-close{width:38px;height:38px;border:0;border-radius:50%;background:#f0e6f4;color:#75578a;font-size:20px;font-weight:900;cursor:pointer}
+      .bgm-settings-note{margin:8px 0 14px;color:#8d7898;font-size:11px;font-weight:750;line-height:1.5}
+      .bgm-track-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.bgm-track{min-width:0;padding:12px 4px;border:2px solid #e9def0;border-radius:15px;background:#fff;color:#79598c;font-size:12px;font-weight:900;cursor:pointer}.bgm-track.on{border-color:#ff76aa;color:#fff;background:linear-gradient(135deg,#9d7bd4,#ff78aa);box-shadow:0 5px 12px #a875a23a}.bgm-track small{display:block;margin-top:3px;font-size:8px;opacity:.8}
+      @media(max-width:420px){.mode-picker{gap:5px!important}.mode-btn{font-size:11px!important;padding:6px 2px!important}.bgm-settings-toggle{right:66px;width:44px;height:44px}.bgm-track-grid{grid-template-columns:repeat(3,1fr)}}
     `;
     d.head.appendChild(s);
   }
-  const inject=()=>{
+
+  if(!d.getElementById('bgm-engine-script')){
+    const engine=d.createElement('script');
+    engine.id='bgm-engine-script';
+    engine.textContent=`
+      (()=>{
+        const KEY=${JSON.stringify(BGM_KEY)};
+        const TRACKS=${JSON.stringify(BGM_TRACKS)};
+        function choice(){let n=Number(localStorage.getItem(KEY)||1);return TRACKS[n]?n:1}
+        function track(){return TRACKS[choice()]}
+        bgmBeat=function(){
+          if(!soundOn||!audioCtx)return;
+          const t=track(),i=bgmStep++%t.notes.length;
+          tone(t.notes[i],0,.16,t.wave,t.wave==='square'?.010:.016);
+          if(i%2===0)tone(t.bass[i%t.bass.length],0,.27,'triangle',.010);
+        };
+        startBgm=function(){
+          ensureAudio();stopBgm();
+          if(soundOn){const t=track();bgmStep=0;bgmBeat();bgmTimer=setInterval(bgmBeat,t.tempo)}
+        };
+        window.getAppBgm=choice;
+        window.setAppBgm=function(n){
+          n=Number(n);if(!TRACKS[n])return;
+          localStorage.setItem(KEY,String(n));bgmStep=0;
+          if(bgmTimer){stopBgm();startBgm()}
+          else if(soundOn){ensureAudio();const t=TRACKS[n];t.notes.slice(0,4).forEach((f,i)=>tone(f,i*.10,.13,t.wave,t.wave==='square'?.010:.025))}
+        };
+      })();
+    `;
+    d.body.appendChild(engine);
+  }
+
+  const injectMission=()=>{
     const picker=d.querySelector('.mode-picker');
     if(!picker||d.getElementById('mission20ModeBtn'))return;
     const b=d.createElement('button');
-    b.id='mission20ModeBtn';
-    b.className='mode-btn mission20-entry';
-    b.type='button';
+    b.id='mission20ModeBtn';b.className='mode-btn mission20-entry';b.type='button';
     b.innerHTML='<span>🎮</span>MISSION 20';
-    b.addEventListener('click',()=>{window.location.href='./hayamihyo.html?v=14'});
+    b.addEventListener('click',()=>{window.location.href='./hayamihyo.html?v=18'});
     picker.appendChild(b);
   };
-  inject();
+
+  const injectSettings=()=>{
+    if(d.getElementById('bgmSettingsButton'))return;
+    const btn=d.createElement('button');
+    btn.id='bgmSettingsButton';btn.className='bgm-settings-toggle';btn.type='button';btn.textContent='⚙️';btn.setAttribute('aria-label','BGM設定');
+    const overlay=d.createElement('div');overlay.id='bgmSettings';overlay.className='bgm-settings-backdrop';
+    overlay.innerHTML=`<div class="bgm-settings-card" role="dialog" aria-modal="true" aria-label="BGM設定"><div class="bgm-settings-head"><h2>⚙️ 設定</h2><button class="bgm-settings-close" type="button">×</button></div><p class="bgm-settings-note">BGMを選んでください。選んだ曲は通常モードとMISSION 20で共通です。</p><div class="bgm-track-grid">${[1,2,3,4,5].map(n=>`<button class="bgm-track" type="button" data-bgm="${n}">BGM ${n}<small>▶ 試聴</small></button>`).join('')}</div></div>`;
+    const refresh=()=>{const cur=Number(localStorage.getItem(BGM_KEY)||1);overlay.querySelectorAll('[data-bgm]').forEach(x=>x.classList.toggle('on',Number(x.dataset.bgm)===cur))};
+    btn.onclick=()=>{refresh();overlay.classList.add('on')};
+    overlay.querySelector('.bgm-settings-close').onclick=()=>overlay.classList.remove('on');
+    overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.classList.remove('on')});
+    overlay.querySelectorAll('[data-bgm]').forEach(x=>x.onclick=()=>{const n=Number(x.dataset.bgm);localStorage.setItem(BGM_KEY,String(n));if(typeof w.setAppBgm==='function')w.setAppBgm(n);refresh()});
+    d.body.append(btn,overlay);
+  };
+
+  injectMission();injectSettings();
   const target=d.getElementById('app')||d.body;
-  new MutationObserver(inject).observe(target,{childList:true,subtree:true});
+  new MutationObserver(()=>{injectMission();injectSettings()}).observe(target,{childList:true,subtree:true});
 });
 </script>
 </body>
