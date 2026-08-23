@@ -49,35 +49,56 @@ function result(){clearInterval(timer);stopBgm();se('finish');let acc=qi?Math.ro
 </script>
 <script>
 const SHOP_LEVELS=[
-  {at:0,name:'ちいさな屋台',icon:'🛒',scene:'🍔',detail:'☂️ 🪴',mascot:'clear-chick.webp'},
-  {at:89,name:'まちのバーガー店',icon:'🏠',scene:'🍔🏠',detail:'🪑 🪴',mascot:'clear-chick.webp'},
-  {at:199,name:'にぎわい人気店',icon:'🏪',scene:'🍔🏪',detail:'🪑 🥤 🪴',mascot:'great-rabbit.webp'},
-  {at:310,name:'行列のできる大きなお店',icon:'🏬',scene:'🍔🏬',detail:'🚲 🪑 🥤 🪴',mascot:'great-rabbit.webp'},
-  {at:442,name:'ゆめのメガバーガー店',icon:'🏰',scene:'🍔🏰',detail:'🎈 👑 🎉 ✨',mascot:'genius-unicorn.webp'}
+  {pct:0,name:'ちいさな屋台',icon:'🛒',scene:'🍔',detail:'☂️ 🪴',mascot:'clear-chick.webp'},
+  {pct:10,name:'公園のキッチンカー',icon:'🚚',scene:'🍔🚚',detail:'🌳 ☕',mascot:'clear-chick.webp'},
+  {pct:20,name:'まちのバーガー店',icon:'🏠',scene:'🍔🏠',detail:'🪑 🪴',mascot:'clear-chick.webp'},
+  {pct:30,name:'テーブルのあるお店',icon:'🍽️',scene:'🍔🏡',detail:'🪑 🥤 🪴',mascot:'clear-chick.webp'},
+  {pct:40,name:'にぎわい人気店',icon:'🏪',scene:'🍔🏪',detail:'🪑 🥤 🎈',mascot:'great-rabbit.webp'},
+  {pct:50,name:'ドライブスルー店',icon:'🚗',scene:'🚗🍔🏪',detail:'🥤 🚙 ✨',mascot:'great-rabbit.webp'},
+  {pct:60,name:'2階建てレストラン',icon:'🏢',scene:'🍔🏢',detail:'🪴 🪑 🥤',mascot:'great-rabbit.webp'},
+  {pct:70,name:'行列のできる大型店',icon:'🏬',scene:'🍔🏬',detail:'🚲 🪑 🥤 🪴',mascot:'great-rabbit.webp'},
+  {pct:85,name:'街一番の旗艦店',icon:'🌆',scene:'🌟🍔🏬',detail:'🚕 🎈 👑',mascot:'genius-unicorn.webp'},
+  {pct:100,name:'ゆめのメガバーガー店',icon:'🏰',scene:'🍔🏰',detail:'🎈 👑 🎉 ✨',mascot:'genius-unicorn.webp'}
 ];
 const burgerStyle=document.createElement('style');
 burgerStyle.textContent=`
 .burger-game{overflow:hidden}.burger-head{align-items:center}.burger-head .shop-level{display:block;margin-top:3px;color:#ff6f9f;font-size:13px}.burger-scene{position:relative;min-height:190px;margin:14px 0 12px;padding:18px;border-radius:21px;background:linear-gradient(180deg,#bfeaff 0 58%,#bce9bd 58% 72%,#f6d8a5 72%);box-shadow:inset 0 0 0 2px #fff;overflow:hidden;text-align:center}.burger-clouds{position:absolute;inset:12px 15px auto;color:#fff;font-size:25px;letter-spacing:58px;text-shadow:0 2px 0 #acd9eb}.burger-shop{position:relative;z-index:1;width:min(78%,360px);margin:17px auto 0;padding:11px 15px 14px;border:5px solid #fff;border-radius:24px 24px 13px 13px;background:linear-gradient(145deg,#ff8bb3,#c59eea);box-shadow:0 10px 0 #9a6eb3,0 17px 22px #705a8740}.burger-shop.tier-1{width:185px;background:linear-gradient(145deg,#ffd267,#ff9e6e)}.burger-shop.tier-2{width:220px}.burger-shop.tier-3{width:270px}.burger-shop.tier-4{width:320px}.burger-shop.tier-5{width:min(92%,390px);background:linear-gradient(145deg,#ffd95f,#ff83b2 48%,#a98fe7)}.shop-sign{display:inline-block;padding:5px 12px;border:3px solid #fff;border-radius:99px;background:#744f8a;color:#fff;font-size:11px;font-weight:950;letter-spacing:.06em}.shop-emoji{display:block;margin:8px 0 1px;font-size:clamp(42px,11vw,68px);line-height:1}.shop-details{color:#fff;font-size:18px;letter-spacing:7px;text-shadow:0 2px 0 #8d6898}.shop-mascot{position:absolute;z-index:2;right:3px;bottom:-8px;width:92px;height:92px;object-fit:contain;filter:drop-shadow(0 5px 8px #73557655)}.shop-status{position:relative;z-index:3;display:inline-block;margin-top:-1px;padding:6px 12px;border-radius:99px;background:#ffffffeb;color:#785589;font-size:11px;font-weight:900;box-shadow:0 4px 10px #896d8d26}.upgrade-box{padding:13px 14px;border-radius:17px;background:#ffffffbd}.upgrade-copy{display:flex;justify-content:space-between;gap:8px;color:#987ca1;font-size:10px;font-weight:850}.upgrade-copy b{color:#775188;font-size:12px}.upgrade-track{height:9px;margin-top:8px;border-radius:99px;background:#eadfec;overflow:hidden}.upgrade-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ffd45e,#ff82ad,#a98ae5);transition:.4s}.shop-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin:14px 0 3px}.shop-stage{position:relative;min-width:0;padding:8px 2px;border-radius:13px;background:#ffffffa8;color:#b0a0b4;text-align:center;filter:grayscale(1);opacity:.52}.shop-stage.on{color:#7a5988;filter:none;opacity:1;box-shadow:0 4px 12px #9572a220}.shop-stage.current{outline:3px solid #ff80ad;background:#fff7c9;animation:shopPulse 1.8s ease-in-out infinite}.shop-stage span{display:block;font-size:23px}.shop-stage b{display:block;margin-top:3px;font-size:8px;line-height:1.15}.shop-stage small{font-size:7px;font-weight:850}.shop-rule{margin:10px 0 0;text-align:center;color:#9d83a6;font-size:9px;font-weight:800}.shop-rule b{color:#e88b2b}.all-clear-banner{padding:10px;border-radius:15px;background:linear-gradient(135deg,#fff3a2,#ffc7df);color:#80548c;font-size:16px;font-weight:950;animation:pop .55s ease}@keyframes shopPulse{50%{transform:translateY(-3px);box-shadow:0 7px 17px #e483a446}}@media(max-width:460px){.burger-scene{min-height:176px;padding:12px}.shop-mascot{width:76px;height:76px}.shop-stages{gap:3px}.shop-stage{padding:7px 1px}.shop-stage span{font-size:20px}.shop-stage b{font-size:7px}.journey-stats strong{font-size:14px}}
 `;
+burgerStyle.textContent+=`
+.burger-shop.tier-6{width:330px}.burger-shop.tier-7{width:345px}.burger-shop.tier-8{width:360px}.burger-shop.tier-9{width:min(88%,380px);background:linear-gradient(145deg,#ffd06d,#ff8eb8,#af94ea)}.burger-shop.tier-10{width:min(94%,410px);background:linear-gradient(145deg,#ffd95f,#ff83b2 48%,#a98fe7)}.shop-stages{grid-template-columns:repeat(5,1fr)}.learning-facilities{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:13px 0}.facility{min-width:0;padding:11px 5px;border:2px solid #fff;border-radius:15px;background:#ffffffc7;color:#876894;text-align:center;box-shadow:0 4px 12px #9476a018;cursor:pointer}.facility:active{transform:scale(.97)}.facility span{display:block;font-size:25px}.facility b{display:block;margin-top:3px;font-size:10px}.facility small{display:block;margin-top:2px;color:#a089a8;font-size:8px;font-weight:800}.facility .facility-track{height:5px;margin:7px 5px 0;border-radius:99px;background:#e9deed;overflow:hidden}.facility .facility-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ffcb5c,#ff82ad,#9d84df)}.facility.done{background:linear-gradient(145deg,#fff9c8,#ffeafa);border-color:#ffd96f}.triple-bonus{margin:9px 0;padding:8px;border-radius:13px;background:linear-gradient(135deg,#e8fff6,#f5ecff);color:#7a6090;text-align:center;font-size:10px;font-weight:900}@media(max-width:460px){.learning-facilities{gap:4px}.facility{padding:9px 2px}.facility b{font-size:8px}.facility span{font-size:21px}}
+`;
 document.head.appendChild(burgerStyle);
+const NORMAL_SHOP_KEY='eigo305-normal-mastered-v1',LISTEN_SHOP_KEY='eigo305-listening-mastered-v1',GUIDE_SHOP_KEY='eigo305-guide-parts-v1',SHOP_INIT_KEY='eigo305-shop-mode-init-v1';
+function shopSet(key){try{return new Set(JSON.parse(localStorage.getItem(key)||'[]'))}catch{return new Set()}}
+if(!localStorage.getItem(SHOP_INIT_KEY)){if(!localStorage.getItem(NORMAL_SHOP_KEY)&&!localStorage.getItem(LISTEN_SHOP_KEY)&&mastered.size)localStorage.setItem(NORMAL_SHOP_KEY,JSON.stringify([...mastered]));localStorage.setItem(SHOP_INIT_KEY,'1')}
+const originalAnswer=answer;
+answer=function(i){const q=qs[qi],right=q?(quizMode==='listening'?q.en:q.ja):'',ok=q&&choices[i]===right;originalAnswer(i);if(ok){const key=quizMode==='listening'?LISTEN_SHOP_KEY:NORMAL_SHOP_KEY,set=shopSet(key);set.add(q.id);localStorage.setItem(key,JSON.stringify([...set]))}};
 function decorateBurgerShop(){
   const road=document.querySelector('.completion-road');if(!road)return;
   const count=Math.min(mastered.size,W.length),p=pct(count,W.length),remaining=W.length-count,rounds=Math.ceil(remaining/10);
   const doneCats=C.filter(c=>{const ws=W.filter(w=>w.category===c.id);return ws.length&&ws.every(w=>mastered.has(w.id))}).length;
-  let level=0;SHOP_LEVELS.forEach((x,i)=>{if(count>=x.at)level=i});
-  const current=SHOP_LEVELS[level],next=SHOP_LEVELS[level+1],tier=level+1;
+  const levels=SHOP_LEVELS.map(x=>({...x,at:Math.ceil(W.length*x.pct/100)}));
+  let level=0;levels.forEach((x,i)=>{if(count>=x.at)level=i});
+  const current=levels[level],next=levels[level+1],tier=level+1;
   const stagePct=next?Math.max(0,Math.min(100,Math.round((count-current.at)/(next.at-current.at)*100))):100;
-  const upgradeText=next?'次の改装まであと '+(next.at-count)+'語':'442語マスター！ お店が完成しました';
+  const normalCount=shopSet(NORMAL_SHOP_KEY).size,listenCount=shopSet(LISTEN_SHOP_KEY).size;
+  let guideParts=[];try{guideParts=JSON.parse(localStorage.getItem(GUIDE_SHOP_KEY)||'[]')}catch{}
+  const guideCount=new Set(guideParts).size,normalPct=pct(normalCount,W.length),listenPct=pct(listenCount,W.length),guidePct=Math.round(guideCount/3*100),triple=normalCount>0&&listenCount>0&&guideCount>=3;
+  const upgradeText=next?'次の改装まであと '+(next.at-count)+'語':W.length+'語マスター！ お店が完成しました';
   road.classList.add('burger-game');
   road.innerHTML='<div class="road-head burger-head"><div><small>YUZU BURGER GROWTH</small><h2>🍔 ハンバーガー屋を大きくしよう！</h2><span class="shop-level">LEVEL '+tier+'　'+current.name+'</span></div><strong>'+p+'%</strong></div>'+
     '<div class="burger-scene" aria-label="現在のお店：'+current.name+'"><div class="burger-clouds">☁︎ ☁︎</div><div class="burger-shop tier-'+tier+'"><div class="shop-sign">YUZU BURGER</div><span class="shop-emoji">'+current.scene+'</span><div class="shop-details">'+current.detail+'</div></div><img class="shop-mascot" src="./assets/rewards/'+current.mascot+'" alt="お店を応援するキャラクター"><div class="shop-status">おぼえた単語で 🍔 '+count+'こ販売！</div></div>'+
     (next?'<div class="upgrade-box"><div class="upgrade-copy"><span>'+current.name+'</span><b>'+upgradeText+' → '+next.name+'</b></div><div class="upgrade-track"><i style="width:'+stagePct+'%"></i></div></div>':'<div class="all-clear-banner">🎊 全部クリア！ ゆめのメガバーガー店が完成！ 🎊</div>')+
-    '<div class="shop-stages">'+SHOP_LEVELS.map((x,i)=>'<div class="shop-stage '+(count>=x.at?'on ':'')+(i===level?'current':'')+'"><span>'+x.icon+'</span><b>'+x.name+'</b><small>'+x.at+'語</small></div>').join('')+'</div>'+
+    '<div class="shop-stages">'+levels.map((x,i)=>'<div class="shop-stage '+(count>=x.at?'on ':'')+(i===level?'current':'')+'"><span>'+x.icon+'</span><b>'+x.name+'</b><small>'+x.at+'語</small></div>').join('')+'</div>'+
+    '<div class="learning-facilities"><button class="facility '+(normalCount>=W.length?'done':'')+'" onclick="setMode(\'normal\')"><span>👀🍳</span><b>キッチン</b><small>見る '+normalCount+' / '+W.length+'語</small><div class="facility-track"><i style="width:'+normalPct+'%"></i></div></button><button class="facility '+(listenCount>=W.length?'done':'')+'" onclick="setMode(\'listening\')"><span>🎧🚗</span><b>ドライブスルー</b><small>聞く '+listenCount+' / '+W.length+'語</small><div class="facility-track"><i style="width:'+listenPct+'%"></i></div></button><button class="facility '+(guideCount>=3?'done':'')+'" onclick="top.location.href=\'./hayamihyo2.html?v=25\'"><span>📚🧾</span><b>レシピブック</b><small>早見表 '+guideCount+' / 3</small><div class="facility-track"><i style="width:'+guidePct+'%"></i></div></button></div>'+
+    (triple?'<div class="triple-bonus">✨ 3つの学び方を達成！ キッチン・ドライブスルー・レシピブック OPEN！</div>':'<div class="triple-bonus">👀 見る・🎧 聞く・📚 早見表の3つで、お店の設備も育つよ！</div>')+
     '<div class="journey-stats"><div>残り<strong>'+remaining+'語</strong></div><div>最短あと<strong>'+rounds+'回</strong></div><div>完了カテゴリ<strong>'+doneCats+' / '+C.length+'</strong></div></div>'+
-    '<p class="shop-rule"><b>英単語を1語おぼえるたびにお店が成長！</b><br>442語すべておぼえると、ゆめのメガバーガー店が完成します。</p><p class="road-note">※1回10問をすべて正解した場合の目安です</p>';
+    '<p class="shop-rule"><b>英単語を1語おぼえるたびにお店が成長！</b><br>'+W.length+'語すべておぼえると、ゆめのメガバーガー店が完成します。</p><p class="road-note">※1回10問をすべて正解した場合の目安です</p>';
 }
 const originalHome=home;
 home=function(){originalHome();decorateBurgerShop()};
+const originalResetProgress=resetProgress;
+resetProgress=function(){originalResetProgress();if(mastered.size===0){[NORMAL_SHOP_KEY,LISTEN_SHOP_KEY,GUIDE_SHOP_KEY,SHOP_INIT_KEY].forEach(k=>localStorage.removeItem(k));home()}};
 decorateBurgerShop();
 </script>
 </body></html>
