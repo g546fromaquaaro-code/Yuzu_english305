@@ -1,0 +1,15 @@
+.listening-settings{margin:15px 0;padding:16px;border:2px solid #fff;border-radius:22px;background:#ffffffd9;color:#76518d}
+.listening-settings h2{margin:0 0 10px;font-size:17px}.listening-levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.listening-levels button{min-height:64px;padding:10px 6px;border:2px solid #e4d5ed;border-radius:15px;background:#fff;color:#76518d;font:inherit;font-size:12px;font-weight:850;cursor:pointer}
+.listening-levels button.on{border-color:#f178af;background:#fff0f7;box-shadow:0 0 0 2px #f178af22}.listening-levels small{display:block;margin-top:5px;font-size:10px}
+.listening-settings p,.practice-note{font-size:12px;line-height:1.7}.listening-settings .primary{width:100%;margin-top:8px;min-height:48px}
+.listening-quiz .qhead{padding-right:110px}.listening-quiz .listen-stage{margin:12px 0 18px;padding:16px;min-height:140px}
+.listen-controls{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px}.listen-controls .speak-button{margin:0;min-height:46px;min-width:140px}
+.listen-status{min-height:22px;margin:8px 0 0;font-size:12px;color:#79568e}.listening-quiz .choice{min-height:64px;white-space:normal;overflow-wrap:anywhere;text-align:left;line-height:1.5}
+.listening-quiz .feedback{flex-wrap:wrap;gap:12px}.listen-answer{line-height:1.7}.listen-answer span{display:block;font-size:13px}
+.practice-review{margin:14px 0;padding:14px;border-radius:18px;background:#fff3df;color:#806035;font-size:13px;line-height:1.7}.practice-review button{min-height:48px}
+.listening-result .actions{display:flex;flex-direction:column;gap:9px}.practice-count{font-weight:850;color:#805697}.review-label{color:#a45c87}
+.mission-note{margin:10px 0;font-size:12px;line-height:1.7;text-align:center;color:#80638f}.mission-review .time{font-size:14px}
+.mission-review .chip{min-height:44px}.result-actions button{min-height:48px}.mission-exit{margin:10px auto 0;border:0;background:transparent;color:#896895;padding:10px;text-decoration:underline;font:inherit;cursor:pointer}
+@media(min-width:800px) and (max-height:850px){.listening-quiz .qcard{padding:20px}.listening-quiz .listen-stage{min-height:95px;padding:8px}.listening-quiz .listen-stage .ear{font-size:28px}.listening-quiz .choice{min-height:54px;padding:12px 16px 12px 58px}.listening-quiz .prompt{margin:10px 0}.listening-quiz .feedback{margin-top:12px;padding:12px}}
+@media(max-width:600px){.listening-levels{gap:5px}.listening-levels button{font-size:11px}.listening-quiz .qhead{padding-right:90px}.listen-controls .speak-button{min-width:110px}.listening-quiz .choices{grid-template-columns:1fr}}
