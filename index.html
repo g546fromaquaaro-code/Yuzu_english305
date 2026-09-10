@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>英単語442</title>
+<title>単語・会話478</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#fff8fc}.appframe{display:block;width:100%;height:100%;border:0;background:#fff}
 </style>
 </head>
 <body>
-<iframe id="appframe" class="appframe" src="./legacy.html?v=25" title="英単語442" allow="autoplay"></iframe>
+<iframe id="appframe" class="appframe" src="./legacy.html?v=28" title="単語・会話478" allow="autoplay"></iframe>
 <script>
 const frame=document.getElementById('appframe');
 const BGM_KEY='eigo305-bgm-v1';
@@ -27,7 +27,7 @@ frame.addEventListener('load',()=>{
     const s=d.createElement('style');
     s.id='app-extra-style';
     s.textContent=`
-      .mode-picker{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:7px!important}
+      .mode-picker{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
       .mode-btn{min-width:0!important;padding:7px 3px!important}
       .mode-btn.mission20-entry,.mode-btn.grammar2-entry{color:#846b90}
       .mode-btn.mission20-entry:active,.mode-btn.grammar2-entry:active{transform:scale(.97)}
@@ -95,6 +95,12 @@ frame.addEventListener('load',()=>{
     picker.appendChild(b);
   };
 
+  const injectPhrases=()=>{
+    const picker=d.querySelector('.mode-picker');
+    if(!picker||d.getElementById('phraseMissionBtn'))return;
+    const b=d.createElement('button');b.id='phraseMissionBtn';b.className='mode-btn';b.type='button';
+    b.innerHTML='<span>💬</span>会話を埋める';b.onclick=()=>{window.location.href='./phrase-mission.html?v=28'};picker.appendChild(b);
+  };
   const injectSettings=()=>{
     if(d.getElementById('bgmSettingsButton'))return;
     const btn=d.createElement('button');
@@ -109,9 +115,9 @@ frame.addEventListener('load',()=>{
     d.body.append(btn,overlay);
   };
 
-  injectMission();injectGrammar();injectSettings();
+  injectMission();injectGrammar();injectPhrases();injectSettings();
   const target=d.getElementById('app')||d.body;
-  new MutationObserver(()=>{injectMission();injectGrammar();injectSettings()}).observe(target,{childList:true,subtree:true});
+  new MutationObserver(()=>{injectMission();injectGrammar();injectPhrases();injectSettings()}).observe(target,{childList:true,subtree:true});
 });
 </script>
 </body>
