@@ -99,13 +99,13 @@ frame.addEventListener('load',()=>{
     const picker=d.querySelector('.mode-picker');
     if(!picker||d.getElementById('phraseMissionBtn'))return;
     const b=d.createElement('button');b.id='phraseMissionBtn';b.className='mode-btn';b.type='button';
-    b.innerHTML='<span>💬</span>会話を埋める';b.onclick=()=>{window.location.href='./phrase-mission.html?v=29'};picker.appendChild(b);
+    b.innerHTML='<span>💬</span>会話を埋める';b.onclick=()=>{window.location.href='./phrase-mission.html?v=30'};picker.appendChild(b);
   };
   const injectConversation=()=>{
     const picker=d.querySelector('.mode-picker');
     if(!picker||d.getElementById('conversationPracticeBtn'))return;
     const b=d.createElement('button');b.id='conversationPracticeBtn';b.className='mode-btn';b.type='button';
-    b.innerHTML='<span>🎧💬</span>先生と練習';b.onclick=()=>{window.location.href='./conversation-practice.html?v=29'};picker.appendChild(b);
+    b.innerHTML='<span>🎧💬</span>先生と練習';b.onclick=()=>{window.location.href='./conversation-practice.html?v=30'};picker.appendChild(b);
   };
   const injectSettings=()=>{
     if(d.getElementById('bgmSettingsButton'))return;
