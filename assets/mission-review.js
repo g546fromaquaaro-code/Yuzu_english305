@@ -107,7 +107,6 @@
   // Label resets explicitly; after grading, the dedicated retry button owns progression.
   const renderWithReset = render;
   render = function () { renderWithReset(); $('#reset').style.display = graded ? 'none' : 'block'; };
-  $('.sectionbar.weak').textContent = '🌱 苦手・復習・未習得ミッション';
   const note = document.createElement('p'); note.className = 'mission-note';
   note.textContent = 'まちがえた単語を優先。採点後は苦手だけ解き直せるよ。正解した単語は翌日以降も復習します。';
   $('.sectionbar.normal').before(note);
