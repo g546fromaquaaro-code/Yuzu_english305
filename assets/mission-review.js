@@ -1,6 +1,7 @@
 (function () {
   'use strict';
   const support = window.LearningSupport, practice = support.create(localStorage), esc = support.escapeHTML;
+  const practiceMode = typeof LESSON_PART2 !== 'undefined' && LESSON_PART2 ? 'lesson-mission' : 'mission';
   let retrying = false, pending = [], originalTotal = 0, originalScore = 0, originalRound = [];
   const previousHome = home;
   const meaningHints = { hour: '時間（1時間・2時間の単位）', time: '時間・時刻', month: '月（1月・2月の単位）', moon: '月（夜空の月）', watch: '見る（テレビなどをじっと）', look: '見る（目を向ける）' };
@@ -10,11 +11,11 @@
   }
   unmasteredFor = function (id) {
     const m = mastered();
-    return wordsFor(id).filter(w => !m.has(w.id) || practice.needsReview('mission', w.id));
+    return wordsFor(id).filter(w => !m.has(w.id) || practice.needsReview(practiceMode, w.id));
   };
   pick = function () {
     const pool = selectedMode === 'weak' ? unmasteredFor(selectedCat) : wordsFor(selectedCat);
-    return practice.prioritize(pool, 'mission', 20, shuffle);
+    return practice.prioritize(pool, practiceMode, 20, shuffle);
   };
   function makeBank(items) {
     const answers = items.map(w => ({ en: w.en }));
@@ -76,7 +77,7 @@
     let score = 0; pending = [];
     round.forEach((w, i) => {
       const chosen = bank.find(x => x.id === fill[i]), ok = !!chosen && accepts(w, chosen.en);
-      practice.record('mission', w.id, ok, { retry: retrying });
+      practice.record(practiceMode, w.id, ok, { retry: retrying });
       if (ok) { score++; m.add(w.id); } else pending.push(w);
     });
     // Correct words count even when the other words need another attempt.
