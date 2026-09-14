@@ -8,15 +8,17 @@ function setup(){
  const buttons=Array.from({length:4},()=>({disabled:true,classList:{add(){}}}));
  const c={W:data.words,LearningSupport:null,localStorage:{getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)},home(){},start(){c.normalStarted=true},answer(){},nextQuestion(){},speakWord(){},quizMode:'listening',timer:null,category:'all',choices:[],stars:0,mastered:new Set(),LISTEN_SHOP_KEY:'listen',STAR_KEY:'stars',shopSet:k=>new Set(JSON.parse(values.get(k)||'[]')),save(){},visitDay(){},stopBgm(){},sparkle(){},clearInterval(){},shuffle:a=>[...a],document:{querySelector:el,querySelectorAll:()=>buttons,addEventListener(){}},addEventListener(){},SpeechSynthesisUtterance:function(t){this.text=t},speechSynthesis:{cancel(){},getVoices:()=>[],speak:u=>{c.utterance=u}}};c.window=c;vm.createContext(c);vm.runInContext(fs.readFileSync('assets/learning-progress.js','utf8'),c);vm.runInContext(fs.readFileSync('assets/listening-upgrade.js','utf8'),c);return {c,el,values,buttons};
 }
-test('listening requires completed audio, retries mistakes, and preserves first score',()=>{
+test('listening autoplays every question and retry, requires completed audio, and preserves first score',()=>{
  const {c,el}=setup();c.start('weather');
+ assert.ok(c.utterance, 'first question autoplays');
  c.answer(0);assert.equal(el('#feedback').innerHTML,'');
- el('#listen-play').onclick();c.utterance.onend();
+ c.utterance.onend();
  const q=c.W.find(w=>w.en===c.utterance.text);c.answer(c.choices.findIndex(x=>x!==q.ja));c.nextQuestion();
  let attempts=1;
  while(!el('#app').innerHTML.includes('全問できた')){
-  el('#listen-play').onclick();c.utterance.onend();const q=c.W.find(w=>w.en===c.utterance.text);
+  const current=c.utterance;current.onend();const q=c.W.find(w=>w.en===c.utterance.text);
   c.answer(c.choices.findIndex(x=>x===q.ja));c.nextQuestion();attempts++;assert.ok(attempts<20);
+  if(!el('#app').innerHTML.includes('全問できた'))assert.notEqual(c.utterance,current,'next question autoplays');
  }
  assert.match(el('#app').innerHTML,/最初の答え：9 \/ 10/);assert.equal(attempts,11);
  assert.equal(c.LearningSupport.create(c.localStorage).get('listening-meaning','weather-1').pending,false);
