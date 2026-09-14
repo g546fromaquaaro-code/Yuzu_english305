@@ -85,6 +85,17 @@ frame.addEventListener('load',()=>{
     picker.appendChild(b);
   };
 
+  const injectMissionPart2=()=>{
+    const picker=d.querySelector('.mode-picker');
+    if(!picker||d.getElementById('mission20Part2ModeBtn'))return;
+    const b=d.createElement('button');
+    b.id='mission20Part2ModeBtn';b.className='mode-btn mission20-entry';b.type='button';
+    b.innerHTML='<span>🧩</span>MISSION 20<br>PART 2';
+    b.setAttribute('aria-label','MISSION 20 PART 2：レッスンの単語・語句');
+    b.addEventListener('click',()=>{window.location.href='./hayamihyo.html?part=2&v=35'});
+    picker.appendChild(b);
+  };
+
   const injectGrammar=()=>{
     const picker=d.querySelector('.mode-picker');
     if(!picker||d.getElementById('grammar2ModeBtn'))return;
@@ -121,9 +132,9 @@ frame.addEventListener('load',()=>{
     d.body.append(btn,overlay);
   };
 
-  injectMission();injectGrammar();injectPhrases();injectConversation();injectSettings();
+  injectMission();injectMissionPart2();injectGrammar();injectPhrases();injectConversation();injectSettings();
   const target=d.getElementById('app')||d.body;
-  new MutationObserver(()=>{injectMission();injectGrammar();injectPhrases();injectConversation();injectSettings()}).observe(target,{childList:true,subtree:true});
+  new MutationObserver(()=>{injectMission();injectMissionPart2();injectGrammar();injectPhrases();injectConversation();injectSettings()}).observe(target,{childList:true,subtree:true});
 });
 </script>
 </body>
