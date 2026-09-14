@@ -101,4 +101,7 @@ const originalResetProgress=resetProgress;
 resetProgress=function(){originalResetProgress();if(mastered.size===0){[NORMAL_SHOP_KEY,LISTEN_SHOP_KEY,GUIDE_SHOP_KEY,SHOP_INIT_KEY].forEach(k=>localStorage.removeItem(k));home()}};
 decorateBurgerShop();
 </script>
+<script src="./assets/learning-progress.js?v=32"></script>
+<script src="./assets/listening-upgrade.js?v=32"></script>
+<style>select{min-height:44px;font:inherit;border:2px solid #dfc6e9;border-radius:12px;background:#fff;padding:6px;color:#6f4d80}.choice:disabled{cursor:default}.choice{min-height:52px}button:focus-visible,select:focus-visible{outline:3px solid #845bc0;outline-offset:3px}#listen-save{color:#9a4054}@media(prefers-reduced-motion:reduce){.listen-stage .ear{animation:none}}</style>
 </body></html>
