@@ -118,6 +118,13 @@ frame.addEventListener('load',()=>{
     const b=d.createElement('button');b.id='conversationPracticeBtn';b.className='mode-btn';b.type='button';
     b.innerHTML='<span>🎧💬</span>先生と練習';b.onclick=()=>{window.location.href='./conversation-practice.html?v=30'};picker.appendChild(b);
   };
+  const injectConversationQuest=()=>{
+    const picker=d.querySelector('.mode-picker');
+    if(!picker||d.getElementById('conversationQuestBtn'))return;
+    const b=d.createElement('button');b.id='conversationQuestBtn';b.className='mode-btn';b.type='button';
+    b.innerHTML='<span>🗣️</span>英会話クエスト';
+    b.onclick=()=>{window.location.href='./conversation-quest.html?v=36'};picker.appendChild(b);
+  };
   const injectSettings=()=>{
     if(d.getElementById('bgmSettingsButton'))return;
     const btn=d.createElement('button');
@@ -132,9 +139,9 @@ frame.addEventListener('load',()=>{
     d.body.append(btn,overlay);
   };
 
-  injectMission();injectMissionPart2();injectGrammar();injectPhrases();injectConversation();injectSettings();
+  injectMission();injectMissionPart2();injectGrammar();injectPhrases();injectConversation();injectConversationQuest();injectSettings();
   const target=d.getElementById('app')||d.body;
-  new MutationObserver(()=>{injectMission();injectMissionPart2();injectGrammar();injectPhrases();injectConversation();injectSettings()}).observe(target,{childList:true,subtree:true});
+  new MutationObserver(()=>{injectMission();injectMissionPart2();injectGrammar();injectPhrases();injectConversation();injectConversationQuest();injectSettings()}).observe(target,{childList:true,subtree:true});
 });
 </script>
 </body>
