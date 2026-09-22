@@ -44,8 +44,40 @@
     ],ending:'I have a dog. His name is Max.',endingJa:'私は犬を飼っているよ。名前はマックス。',challenge:'もう一度 Please say that again. を見ずに言ってみよう。'}
   ];
   for(const s of scenes)s.turns=s.turns.map((t,i)=>({id:s.id+'-'+i,prompt:t[0],ja:t[1],task:t[2],answer:t[3],wrong:t[4],tip:t[5]}));
+  // Each entry pairs a one-sentence prompt with a 2–4 sentence listening prompt.
+  const listening=[
+    ['What is your name?','名前は？','Hello. My name is Ken. What is your name?','こんにちは。僕はケン。名前は？'],
+    ['How old are you?','何歳？','Nice to meet you. I am ten. How old are you?','はじめまして。僕は10歳。何歳？'],
+    ['I am ten, too.','私も10歳だよ。','I am ten, too. I like sports. Please ask me about sports.','私も10歳だよ。スポーツが好き。スポーツについて質問してね。'],
+    ['Do you like apples?','りんごは好き？','I have some apples. Do you like apples?','りんごがあるよ。りんごは好き？'],
+    ['What food do you like?','どんな食べ物が好き？','I like apples. I like bananas, too. What food do you like?','りんごが好き。バナナも好き。どんな食べ物が好き？'],
+    ['I like pizza, too.','私もピザが好き。','I like pizza, too. I like sweet food. Please ask me about ice cream.','私もピザが好き。甘い食べ物が好き。アイスクリームについて質問してね。'],
+    ['What is your favorite subject?','好きな教科は？','I like school. My favorite subject is music. What is your favorite subject?','学校が好き。好きな教科は音楽。好きな教科は？'],
+    ['When do you have English?','英語の授業はいつ？','I have music on Fridays. When do you have English?','金曜日に音楽の授業があるよ。英語の授業はいつ？'],
+    ['I like music.','私は音楽が好き。','I like music. We have a piano at home. Please ask me about the piano.','私は音楽が好き。家にピアノがあるよ。ピアノについて質問してね。'],
+    ["Let's play basketball.",'バスケをしよう。',"It is sunny today. I have a ball. Let's play basketball.",'今日は晴れ。ボールを持っているよ。バスケをしよう。'],
+    ['Where can we play?','どこで遊べる？','We have a ball. Where can we play?','ボールはあるね。どこで遊べる？'],
+    ['What time?','何時？','The park sounds good. I do my homework after lunch. What time?','公園はいいね。昼食後に宿題をするよ。何時？'],
+    ['Can I help you?','何をお探しですか？','Hello. We have some nice fruit today. Can I help you?','こんにちは。今日はおいしい果物があります。何をお探しですか？'],
+    ['How many apples do you want?','りんごはいくつ欲しいですか？','These apples are big. They are sweet. How many apples do you want?','このりんごは大きいですよ。甘いですよ。いくつ欲しいですか？'],
+    ['Here you are.','はい、どうぞ。','Here are your apples. Here you are.','こちらがりんごです。はい、どうぞ。'],
+    ['What time do you get up?','何時に起きる？','I get up early. I eat breakfast with my family. What time do you get up?','私は早く起きるよ。家族と朝ごはんを食べるよ。何時に起きる？'],
+    ['What do you do after school?','放課後は何をする？','I go home at four. What do you do after school?','私は4時に帰宅するよ。放課後は何をする？'],
+    ['I read books after school.','私は放課後に本を読むよ。','I read books after school. I have many books. Please ask me about reading.','私は放課後に本を読むよ。本をたくさん持っているよ。読書について質問してね。'],
+    ['Do you have a pet?','ペットを飼っている？','I like animals. My friend has a dog. Do you have a pet?','動物が好き。友達は犬を飼っているよ。ペットを飼っている？'],
+    ['What color is your cat?','猫は何色？','I like cats. What color is your cat?','猫が好き。あなたの猫は何色？'],
+    ['I like cats.','私は猫が好き。','I like cats. My sister likes dogs. Please ask me about dogs.','私は猫が好き。妹は犬が好き。犬について質問してね。'],
+    ['What is your favorite animal?','好きな動物は？','I have a book about animals. I read it every day. It is fun. What is your favorite animal?','動物の本を持っているよ。毎日読むよ。楽しいよ。好きな動物は？'],
+    ['What animal do you like?','どんな動物が好き？','I can say it again. What animal do you like?','もう一度言うね。どんな動物が好き？'],
+    ['Do you have a dog?','犬を飼っている？','I like dogs, too. They are cute. Do you have a dog?','私も犬が好き。かわいいよね。犬を飼っている？']
+  ];
+  scenes.flatMap(s=>s.turns).forEach((q,i)=>{
+    const [prompt,ja,longPrompt,longJa]=listening[i];Object.assign(q,{prompt,ja,longPrompt,longJa});
+  });
+  function prompt(q,level){return level===2?q.longPrompt:q.prompt;}
+  function translation(q,level){return level===2?q.longJa:q.ja;}
   const turns=scenes.flatMap(s=>s.turns), modes=['choice','order','speak'],KEY='eigo305-conversation-quest-v1';
   function shuffle(xs){const a=xs.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
   function read(raw){const out={};if(!raw||typeof raw!=='object')return out;for(const q of turns){const r=raw[q.id];if(!r||typeof r!=='object')continue;out[q.id]={};for(const m of modes)if(['done','again'].includes(r[m]))out[q.id][m]=r[m];}return out;}
-  const api={scenes,turns,modes,KEY,shuffle,read};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.ConversationQuest=api;
+  const api={scenes,turns,modes,KEY,shuffle,read,prompt,translation};if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.ConversationQuest=api;
 })(typeof window!=='undefined'?window:globalThis);

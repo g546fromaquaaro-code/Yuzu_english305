@@ -2,16 +2,16 @@ const test=require('node:test');
 const assert=require('node:assert/strict');
 const C=require('../assets/conversation-quest-bank.js');
 const fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
-function boot(values=new Map(),audio=true){
+function boot(values=new Map(),audio=true,autoEnd=true){
   const nodes=new Map(),handlers={},spoken=[];
   const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',addEventListener:(name,fn)=>handlers[name]=fn});return nodes.get(id);};
   const c={document:{getElementById:node,addEventListener(){}},localStorage:{getItem:k=>values.get(k)||null,setItem:(k,v)=>values.set(k,v)},addEventListener(){}};
-  if(audio){c.speechSynthesis={cancel(){},getVoices:()=>[],speak:u=>spoken.push(u)};c.SpeechSynthesisUtterance=function(text){this.text=text;};}c.window=c;vm.createContext(c);
+  if(audio){c.speechSynthesis={cancel(){},getVoices:()=>[],speak:u=>{spoken.push(u);if(autoEnd)u.onend?.();}};c.SpeechSynthesisUtterance=function(text){this.text=text;};}c.window=c;vm.createContext(c);
   for(const f of ['conversation-quest-bank.js','conversation-quest.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../assets',f),'utf8'),c);
   return{values,spoken,html:()=>node('questApp').innerHTML,notice:()=>node('questNotice').textContent,click:(action,id)=>handlers.click({target:{closest:()=>({dataset:{action,id:String(id??'')}})}})};
 }
 function decode(s){return s.replace(/&#39;/g,"'").replace(/&quot;/g,'"').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&amp;/g,'&');}
-function choice(h,text){const entry=[...h.html().matchAll(/data-action="choice" data-id="(\d+)"[^>]*>(.*?)<\/button>/g)].find(m=>decode(m[2])===text);assert.ok(entry);h.click('choice',entry[1]);}
+function choice(h,text){if(!h.html().includes('data-action="choice"'))h.click('listen');const entry=[...h.html().matchAll(/data-action="choice" data-id="(\d+)"[^>]*>(.*?)<\/button>/g)].find(m=>decode(m[2])===text);assert.ok(entry);h.click('choice',entry[1]);}
 test('eight complete scenes have unambiguous choices and stable unique records',()=>{
   assert.equal(C.scenes.length,8);assert.equal(C.turns.length,24);
   assert.equal(new Set(C.turns.map(q=>q.id)).size,24);
@@ -39,5 +39,22 @@ test('mistakes survive reload and clear only on a fresh successful retry; audio 
  h=boot(new Map([[C.KEY,'invalid-json']]),false);assert.match(h.notice(),/読み込めません/);h.click('start','hello');h.click('listen');assert.match(h.notice(),/読み上げが使えません/);
 });
 test('word removal, repeated tokens and next-stage navigation preserve correct sequence',()=>{
- const h=boot();h.click('start','hello');for(const q of C.scenes[0].turns){choice(h,q.answer);h.click('next');}h.click('advance');assert.match(h.html(),/② 英文を組み立てる/);h.click('word',1);h.click('undo',1);for(let i=0;i<5;i++)h.click('word',i);h.click('check');assert.match(h.html(),/正解の返事/);
+ const h=boot();h.click('start','hello');for(const q of C.scenes[0].turns){choice(h,q.answer);h.click('next');}h.click('advance');h.click('listen');assert.match(h.html(),/② 英文を組み立てる/);h.click('word',1);h.click('undo',1);for(let i=0;i<5;i++)h.click('word',i);h.click('check');assert.match(h.html(),/正解の返事/);
+});
+
+test('listening lengths are exactly one sentence or two to four, for every exchange',()=>{
+ const count=s=>(s.match(/[.!?]+/g)||[]).length;
+ for(const q of C.turns){assert.equal(count(C.prompt(q,1)),1,q.id);assert.ok(count(C.prompt(q,2))>=2&&count(C.prompt(q,2))<=4,q.id);assert.ok(C.translation(q,2));}
+});
+test('English stays hidden until requested and answers wait for audio completion',()=>{
+ const h=boot(new Map(),true,false);h.click('start','hello');
+ assert.ok(!h.html().includes(C.turns[0].prompt));assert.ok(!h.html().includes(C.turns[0].answer));
+ h.click('listen');assert.ok(!h.html().includes('data-action="choice"'));
+ h.spoken.at(-1).onend();assert.ok(h.html().includes('data-action="choice"'));assert.ok(!h.html().includes(C.turns[0].prompt));
+ h.click('show');assert.ok(h.html().includes(C.turns[0].prompt));
+ h.click('home');h.click('start','food');h.click('listen');const old=h.spoken.at(-1);h.click('home');old.onend();assert.match(h.html(),/今日の場面/);
+});
+test('level two uses longer audio and separate progress; transcript works without audio',()=>{
+ const values=new Map();const h=boot(values);h.click('start','hello');choice(h,C.turns[0].answer);h.click('home');h.click('level',2);h.click('start','hello');h.click('listen');assert.equal(h.spoken.at(-1).text,C.turns[0].longPrompt);choice(h,C.turns[0].wrong[0]);assert.equal(JSON.parse(values.get(C.KEY))['hello-0'].choice,'done');assert.equal(JSON.parse(values.get(C.KEY+'-level2'))['hello-0'].choice,'again');
+ const f=boot(new Map(),false);f.click('start','hello');f.click('listen');f.click('show');assert.ok(f.html().includes('data-action="choice"'));
 });
